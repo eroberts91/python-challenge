@@ -1,6 +1,4 @@
 #python sceipt for reading csv file, running through every row and then exporting summary data into a txt file
-
-
 #import modules needed for script
 import os
 import csv
