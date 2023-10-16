@@ -37,7 +37,8 @@ with open(csvpath) as csvfile:
             cand2_count = cand2_count + 1
         elif row[2] == candidate_list[2]:
             cand3_count = cand3_count + 1
- 
+    
+    #conditional statement to detemine winner of election
     if cand1_count > cand2_count and cand3_count:
         winner = candidate_list[0]
     elif cand2_count > cand1_count and cand3_count:
@@ -60,7 +61,7 @@ with open(csvpath) as csvfile:
     
     print(summary)
 
-        #creates text file in analysis sub folder
+    #creates text file in analysis sub folder
     file_to_output = os.path.join("analysis", "election_analysis.txt")
 
     #writes financial summary to txt file
