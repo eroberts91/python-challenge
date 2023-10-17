@@ -15,34 +15,45 @@ with open(csvpath) as csvfile:
     csv_header = next(csvreader)
     #print(f"CSV Header: (csv_header)")
 
-    #sets initial storage variables for for loop
+    #sets initial storage variables for for loops
     net_total = 0
     months = 0
-    min = 0
-    max = 0
+    
+    #set blank lists for iterating through for delta values
+    date_set = []
+    income_set =[]
 
-    #for loop which runs through entire csv file by rows
+    #for loop which runs through entire csv file by rows, creates list of incomes, total montths and net income
     for row in csvreader:
+        date_set.append(row[0])
+        income_set.append(row[1])
         net_total = net_total + int(row[1])
         months = months + 1
-        if int(row[1]) > max:
-            max = int(row[1])
-            max_date = row[0]
-        elif int(row[1]) < min:
-            min = int(row[1])
-            min_date = row[0]
+    
+    #set initial variables for for loop to determine min/max delta in profits
+    net_delta = 0
+    min = 0
+    max = 0
+    
+    #for loop to find min and max difference between each month and preceeding month
+    for i in range(0, len(income_set)-1):
+        net_delta = net_delta + int(income_set[i+1]) - int(income_set[i])
+        if int(income_set[i+1]) - int(income_set[i]) > max:
+            max = int(income_set[i+1]) - int(income_set[i])
+            max_date = date_set[i+1]
+        elif int(income_set[i+1]) - int(income_set[i]) < min:
+            min = int(income_set[i+1]) - int(income_set[i])
+            min_date = date_set[i+1]
 
     # Generate financial output summary text file
     summary = (
         f"Financial Analysis\n"
         f"---------------------------------------\n"
         f"Total Months: {months}\n"
-        f"Total: ${net_total}\n"
-        f"Average Change: ${(round(net_total/months,2))}\n"
+        f"Total: ${round(net_total,2)}\n"
+        f"Average Change: ${(round(net_delta/(months-1),2))}\n"
         f"Greatest Increase in Profits: {max_date} (${max})\n"
         f"Greatest Decrease in Profits: {min_date} (${min})\n")
-
-
     #prints summary to terminal
     print(summary)
 
