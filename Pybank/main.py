@@ -13,7 +13,7 @@ with open(csvpath) as csvfile:
     #print(csvreader)
 
     csv_header = next(csvreader)
-    #print(f"CSV Header: (csv_header)")
+     #print(f"CSV Header: {csv_header}")
 
     #sets initial storage variables for for loops
     net_total = 0
