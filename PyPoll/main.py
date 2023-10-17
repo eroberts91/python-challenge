@@ -6,12 +6,10 @@ import csv
 #set file location path
 csvpath = os.path.join('PyPoll','resources', 'election_data.csv')
 
+#open and read csv file
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
-    #print(csvreader)
-
     csv_header = next(csvreader)
-    #print(f"CSV Header: {csv_header}")
 
     #sets initial storage variables for for loop
     vote_total = 0
@@ -20,7 +18,6 @@ with open(csvpath) as csvfile:
     cand2_count = 0
     cand3_count = 0
 
-
     #for loop which runs through entire csv file by rows to sum total votes and create candidate list
     for row in csvreader:
         #sums total number of votes
@@ -28,8 +25,7 @@ with open(csvpath) as csvfile:
         #add candidates  to list if not already added
         if row[2] not in candidate_list:
             candidate_list.append(row[2])
-        #print(row[2])
-    
+  
         #conditional to total up each candidate vote total
         if row[2] == candidate_list[0]:
             cand1_count = cand1_count + 1

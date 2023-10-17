@@ -1,6 +1,4 @@
 #python sceipt for reading csv file, running through every row and then exporting summary data into a txt file
-
-
 #import modules needed for script
 import os
 import csv
@@ -8,12 +6,10 @@ import csv
 #set file location path
 csvpath = os.path.join('PyBank', 'resources', 'budget_data.csv')
 
+#open and read csv file using module
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
-    #print(csvreader)
-
     csv_header = next(csvreader)
-     #print(f"CSV Header: {csv_header}")
 
     #sets initial storage variables for for loops
     net_total = 0
@@ -38,6 +34,7 @@ with open(csvpath) as csvfile:
     #for loop to find min and max difference between each month and preceeding month
     for i in range(0, len(income_set)-1):
         net_delta = net_delta + int(income_set[i+1]) - int(income_set[i])
+       #conditional to set max and min delta values by checking against the current max/min
         if int(income_set[i+1]) - int(income_set[i]) > max:
             max = int(income_set[i+1]) - int(income_set[i])
             max_date = date_set[i+1]
