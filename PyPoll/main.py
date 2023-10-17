@@ -4,7 +4,7 @@ import os
 import csv
 
 #set file location path
-csvpath = os.path.join('resources', 'election_data.csv')
+csvpath = os.path.join('PyPoll','resources', 'election_data.csv')
 
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -62,7 +62,7 @@ with open(csvpath) as csvfile:
     print(summary)
 
     #creates text file in analysis sub folder
-    file_to_output = os.path.join("analysis", "election_analysis.txt")
+    file_to_output = os.path.join('PyPoll', 'analysis', "election_analysis.txt")
 
     #writes financial summary to txt file
     with open(file_to_output, "w") as txt_file:
